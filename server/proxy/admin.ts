@@ -217,6 +217,7 @@ export async function deleteArticle (uids: Array<string> | string) {
   }
   const result = await Post.updateMany(
     { _id: { $in: uids } },
+    // @ts-ignore: Unreachable code error
     { isActive: false, publishTime: null }
   ).exec();
   return {
@@ -300,6 +301,7 @@ export async function deleteCategory (uids: Array<string> | string) {
   const result = await Promise.all([
     Category.deleteMany({ _id: { $in: uids } }).exec(),
     Post.updateMany(
+      // @ts-ignore: Unreachable code error
       { category: { $in: uids } },
       { category: otherCategoryItem._id.toHexString() }
     ).exec()

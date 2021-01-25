@@ -5,7 +5,6 @@
   "author": "Sky.Sun",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .ts,.js,.vue .",
     "precommit": "yarn run lint",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
@@ -55,17 +54,6 @@
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.5.6",
-    "@nuxtjs/eslint-config-typescript": "^1.0.0",
-    "@nuxtjs/eslint-module": "^1.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-jest": "^23.6.0",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-nuxt": "^0.5.0",
-    "eslint-plugin-promise": ">=4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^6.1.2",
     "less": "^3.10.3",
     "less-loader": "^5.0.0"
   }

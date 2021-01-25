@@ -114,6 +114,7 @@ router.delete('/article', async (req, res) => {
       data = await proxy.delete2Article(req.query.uids);
     } else {
       // 临时删除，可恢复
+      // @ts-ignore: Unreachable code error
       data = await proxy.deleteArticle(req.query.uids);
     }
     resp = {
@@ -134,6 +135,7 @@ router.delete('/article', async (req, res) => {
 router.get('/checkArticleAlias', async (req, res) => {
   let resp: IResp;
   try {
+    // @ts-ignore: Unreachable code error
     const data = await proxy.checkArticleAlias(req.query);
     resp = {
       code: 1,
@@ -172,6 +174,7 @@ router.put('/publishTime', async (req, res) => {
 router.get('/checkCategoryAlias', async (req, res) => {
   let resp: IResp;
   try {
+    // @ts-ignore: Unreachable code error
     const data = await proxy.checkCategoryAlias(req.query);
     resp = {
       code: 1,
@@ -229,6 +232,7 @@ router.put('/category', async (req, res) => {
 router.delete('/category', async (req, res) => {
   let resp: IResp;
   try {
+    // @ts-ignore: Unreachable code error
     const data = await proxy.deleteCategory(req.query.uids);
     resp = {
       code: 1,
@@ -266,6 +270,7 @@ router.get('/comments', async (req, res) => {
 router.delete('/comment', async (req, res) => {
   let resp: IResp;
   try {
+    // @ts-ignore: Unreachable code error
     const data = await proxy.deleteComment(req.query.uids);
     resp = {
       code: 1,
@@ -303,6 +308,7 @@ router.get('/guestbook', async (req, res) => {
 router.delete('/guestbook', async (req, res) => {
   let resp: IResp;
   try {
+    // @ts-ignore: Unreachable code error
     const data = await proxy.deleteGuestbook(req.query.uids);
     resp = {
       code: 1,

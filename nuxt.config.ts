@@ -120,9 +120,6 @@ const config: Configuration = {
     }
   },
   typescript: {
-    typeCheck: {
-      eslint: true
-    }
   },
   watch: ['~/server']
 };

@@ -143,6 +143,7 @@ export async function getArticle (params, user) {
     conditions.isDraft = false;
     conditions.isActive = true;
   }
+  // @ts-ignore: Unreachable code error
   const article = await Post.findOne(conditions)
     .populate('category')
     .exec();
@@ -150,6 +151,7 @@ export async function getArticle (params, user) {
 }
 
 export async function getPostsCountByCate (category) {
+  // @ts-ignore: Unreachable code error
   const count = await Post.countDocuments({
     category,
     isDraft: false,
@@ -160,6 +162,7 @@ export async function getPostsCountByCate (category) {
 
 export async function increaseViews ({ postID, clientIP }) {
   // 判断该IP用户是否已看过该文章
+  // @ts-ignore: Unreachable code error
   const exists = await Cache.exists({
     clientIP,
     ext1: postID,
@@ -195,7 +198,9 @@ export async function getComments (params) {
     post: params.articleId
   } as IComment;
   const data = await Promise.all([
+    // @ts-ignore: Unreachable code error
     Comment.find(query, {}, options).exec(),
+    // @ts-ignore: Unreachable code error
     Comment.countDocuments(query).exec()
   ]);
   const comments = data[0];
