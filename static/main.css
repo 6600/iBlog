@@ -22,9 +22,7 @@ body {
 }
 
 .container {
-  padding-top: 70px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-top: 60px;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

@@ -4,47 +4,55 @@
       <div class="darkmode-background" />
       <div class="darkmode-layer" />
       <div class="navbar">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">
-            <h4>
-              {{ settings.blogName }}
-              <p v-if="settings.blogSlogan">
-                {{ settings.blogSlogan }}
-              </p>
-            </h4>
-          </a>
+        <div class="w1000">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+              <h4>
+                {{ settings.blogName }}
+                <p v-if="settings.blogSlogan">
+                  {{ settings.blogSlogan }}
+                </p>
+              </h4>
+            </a>
+          </div>
+          <button class="navbar-toggler" type="button" @click="toggleMenu">
+            <web-font icon="bars" />
+          </button>
+          <div class="navbar-collapse" :class="{ showMenu }">
+            <ul>
+              <li
+                :class="{
+                  'blog-active':
+                    $route.path === '/' || $route.path.startsWith('/blog')
+                }"
+                @click="hideMenu"
+              >
+                <nuxt-link to="/">首页
+                </nuxt-link>
+                <div class="nav-line" />
+              </li>
+              <li :class="{ 'guestbook-active': $route.path === '/guestbook' }" @click="hideMenu">
+                <nuxt-link to="/guestbook">留言
+                </nuxt-link>
+                <div class="nav-line" />
+              </li>
+              <li :class="{ 'profile-active': $route.path === '/profile' }" @click="hideMenu">
+                <nuxt-link to="/profile">关于
+                </nuxt-link>
+                <div class="nav-line" />
+              </li>
+            </ul>
+          </div>
         </div>
-        <button class="navbar-toggler" type="button" @click="toggleMenu">
-          <web-font icon="bars" />
-        </button>
-        <div class="navbar-collapse" :class="{ showMenu }">
-          <ul>
-            <li
-              :class="{
-                'blog-active':
-                  $route.path === '/' || $route.path.startsWith('/blog')
-              }"
-              @click="hideMenu"
-            >
-              <nuxt-link to="/">
-                <font-awesome-icon :icon="['fas', 'home']" />首页
-              </nuxt-link>
-              <div class="nav-line" />
-            </li>
-            <li :class="{ 'guestbook-active': $route.path === '/guestbook' }" @click="hideMenu">
-              <nuxt-link to="/guestbook">
-                <font-awesome-icon :icon="['fas', 'comment-dots']" />留言
-              </nuxt-link>
-              <div class="nav-line" />
-            </li>
-            <li :class="{ 'profile-active': $route.path === '/profile' }" @click="hideMenu">
-              <nuxt-link to="/profile">
-                <font-awesome-icon :icon="['fas', 'user']" />关于
-              </nuxt-link>
-              <div class="nav-line" />
-            </li>
-          </ul>
-        </div>
+      </div>
+      <div class="text-center div-b">
+        <h1>Welcome to OpenKE</h1>
+        <hr style="border-color:rgb(255,255,255);width:80px;border-width:3px;">
+        <br>
+        <p class="lead" style="color:rgba(255,255,255,1.0)"><b>An Open-source Framework for Knowledge Embedding</b></p>
+        <br>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="/index/toolkits#openke" style="background">Toolkits</a>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="/index/toolkits#pretrained-embeddings" style="margin-left:20px;">Embeddings</a>
       </div>
       <nuxt />
       <layout-footer :show-login="true" />
@@ -139,11 +147,9 @@ export default Vue.extend({
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  height: 60px;
+  height: auto;
   background: #343a40;
-  border-bottom: 1px solid rgba(234, 234, 234, 0.8);
   z-index: 999;
-  box-shadow: 0 0 3px rgba(234, 234, 234, 0.8);
 }
 
 .navbar .navbar-header {
@@ -172,6 +178,7 @@ export default Vue.extend({
   margin: 0;
   font-weight: 400;
   color: white;
+  font-size: 24px;
 }
 
 .navbar .navbar-brand h4 p {
@@ -184,15 +191,18 @@ export default Vue.extend({
   display: none;
   padding: 4px 12px;
   color: rgba(0, 0, 0, 0.5);
-  border: 1px solid #ccc;;
+  border: 1px solid #ccc;
   cursor: pointer;
   width: 56px;
   height: 40px;
   border-radius: 5px;
-  margin: 15px 15px 0;
   font-size: 28px;
   line-height: 1;
   background: #fff;
+  z-index: 999;
+  position: fixed;
+  right: 10px;
+  top: 9px;
 }
 
 .navbar-toggler:focus {
@@ -230,7 +240,7 @@ export default Vue.extend({
 }
 
 .navbar-collapse li.blog-active a {
-  color: #ff6600;
+  color:white;
   opacity: 1;
 }
 
@@ -415,6 +425,12 @@ export default Vue.extend({
     border-bottom: 1px solid rgba(234, 234, 234, 0.8);
     z-index: 999;
     box-shadow: 0 0px 3px 0px rgba(234, 234, 234, 0.8);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background-color: #3c3f42;
+    top: 0;
   }
 
   .navbar-collapse.showMenu {
@@ -424,7 +440,6 @@ export default Vue.extend({
   .navbar-collapse ul {
     flex-direction: column;
     padding: 10px 5px;
-    background: #fff;
   }
 
   .navbar-collapse a {
@@ -481,5 +496,64 @@ export default Vue.extend({
 .dark-mode .ant-drawer pre.alert
 {
   mix-blend-mode: difference;
+}
+.w1000 {
+  width: 1000px;
+  margin: 0 auto;
+}
+.navbar .w1000 {
+  display: flex;
+  justify-content: space-between;
+}
+.text-center {
+  height: 400px;
+  background: rgb(34 37 42);
+  padding-top: 130px;
+  width: 100%;
+  text-align: center;
+}
+.text-center h1 {
+  color: #aeb0b3;
+  font-size: 45px;
+}
+.text-center hr {
+  background-color: rgb(255,255,255);
+  width: 80px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 2px;
+}
+.lead b {
+  color: rgb(172 174 177);
+  font-size: 26px;
+  font-weight: normal;
+}
+.btn {
+  font-weight: normal;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 300px;
+  font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color: white;
+  background-color: rgb(52,58,64);
+  padding: 10px 18px;
+}
+@media screen and (max-width: 1000px) {
+  .w1000 {
+    width: 100%;
+  }
+  .text-center {
+    height: 80vw;
+    padding-top: 30px;
+  }
+  .text-center h1 {
+    font-size: 30px;
+  }
+  .lead b {
+    font-size: 21px;
+  }
+  .post-wrap.w1000 {
+    margin-top: 0 !important;
+  }
 }
 </style>

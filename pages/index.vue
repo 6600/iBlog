@@ -1,7 +1,7 @@
 <template>
   <div>
-    <category-list :categories="categories" />
-    <div class="post-wrap">
+    <!-- <category-list :categories="categories" /> -->
+    <div class="post-wrap w1000">
       <div class="post-left">
         <div class="post-top">
           <div class="post-top-left">
@@ -100,7 +100,7 @@
           </li>
         </ul>
       </div>
-      <div class="post-right">
+      <div class="post-right" style="display: none;">
         <blog-intro v-if="settings.showBlogIntro" />
         <article-calendar @selectCalendar="selectCalendar" />
         <pop-articles />
@@ -349,8 +349,8 @@ export default Vue.extend({
 
 <style scoped>
 .post-wrap {
-  padding: 25px 20px 0 265px;
   display: flex;
+  margin-top: 80px;
 }
 
 .post-left {
@@ -508,17 +508,9 @@ export default Vue.extend({
   .post-right {
     display: none;
   }
-
-  .post-list {
-    min-height: 100vh;
-  }
 }
 
 @media (max-width: 840px) {
-  .post-wrap {
-    padding: 15px 0 0 0;
-  }
-
   .post-left {
     border-radius: 5px;
   }

@@ -1,6 +1,6 @@
 <template>
   <a-locale-provider :locale="zhCN">
-    <div class="container">
+    <div class="container" style="padding: 0;">
       <div class="left-top-header">
         <nuxt-link to="/">
           <h4>
